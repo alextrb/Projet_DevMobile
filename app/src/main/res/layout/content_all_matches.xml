@@ -8,4 +8,9 @@
     tools:context="app.univers7.ultra_instinct.AllMatchesActivity"
     tools:showIn="@layout/app_bar_all_matches">
 
+
+    <ListView
+        android:id="@+id/allMatchesListViewId"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 </android.support.constraint.ConstraintLayout>
