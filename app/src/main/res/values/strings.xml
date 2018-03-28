@@ -5,4 +5,11 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
+    <string name="title_activity_players">PlayersActivity</string>
+    <string name="title_activity_all_matches">AllMatchesActivity</string>
+    <string name="title_activity_previous_matches">PreviousMatchesActivity</string>
+    <string name="title_activity_all_matches_details">AllMatchesDetailsActivity</string>
+    <string name="title_activity_players_details">PlayersDetailsActivity</string>
+    <string name="title_activity_previous_matches_details">PreviousMatchesDetailsActivity</string>
+    <string name="title_activity_register">RegisterActivity</string>
 </resources>
