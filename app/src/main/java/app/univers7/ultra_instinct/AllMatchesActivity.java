@@ -52,6 +52,7 @@ public class AllMatchesActivity extends AppCompatActivity
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
                 Intent intent = new Intent(AllMatchesActivity.this, AddMatchActivity.class);
+                startActivity(intent);
             }
         });
 
