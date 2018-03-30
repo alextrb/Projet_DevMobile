@@ -50,6 +50,7 @@ public class AllMatchesDetailsActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_all_matches_details);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -90,7 +91,8 @@ public class AllMatchesDetailsActivity extends AppCompatActivity
             }
         });
 
-        imageView.setImageBitmap(getImageBitmap("file:///sdcard/Download/MigattenoGokuiPerfectHeroes.png"));;
+        imageView.setImageBitmap(getImageBitmap("file:///sdcard/Download/MigattenoGokuiPerfectHeroes.png"));
+
     }
 
     @Override

@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="app.univers7.ultra_instinct">
 
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission-sdk-23 android:name="android.permission.CAMERA" />
     <uses-permission-sdk-23 android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
@@ -13,8 +14,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".LoginActivity"
-            android:label="@string/app_name">
+            android:name=".AllMatchesActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -24,10 +26,6 @@
         <activity
             android:name=".PlayersActivity"
             android:label="@string/title_activity_players"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".AllMatchesActivity"
-            android:label="@string/title_activity_all_matches"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".PreviousMatchesActivity"
@@ -45,10 +43,7 @@
             android:name=".PreviousMatchesDetailsActivity"
             android:label="@string/title_activity_previous_matches_details"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".RegisterActivity"
-            android:label="@string/title_activity_register"
-            android:parentActivityName=".LoginActivity"></activity>
+
     </application>
 
 </manifest>
