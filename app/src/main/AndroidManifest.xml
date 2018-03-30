@@ -3,6 +3,7 @@
     package="app.univers7.ultra_instinct">
 
     <uses-permission android:name="android.permission.INTERNET" />
+
     <uses-permission-sdk-23 android:name="android.permission.CAMERA" />
     <uses-permission-sdk-23 android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
@@ -43,7 +44,7 @@
             android:name=".PreviousMatchesDetailsActivity"
             android:label="@string/title_activity_previous_matches_details"
             android:theme="@style/AppTheme.NoActionBar" />
-
+        <activity android:name=".AddMatchActivity"></activity>
     </application>
 
 </manifest>
