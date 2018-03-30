@@ -4,16 +4,16 @@
     tools:showIn="navigation_view">
 
         <item
-            android:id="@+id/nav_all_matches"
-            android:title="All matches" />
+            android:id="@+id/nav_matches"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="Matchs" />
         <item
-            android:id="@+id/nav_previous_matches"
-            android:title="Previous matches" />
+            android:id="@+id/nav_recent_matches"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="Matchs récents" />
         <item
-            android:id="@+id/nav_all_players"
-            android:title="All players" />
-        <item
-            android:id="@+id/nav_log_out"
-            android:title="Log out" />
+            android:id="@+id/nav_players"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="Joueurs" />
 
 </menu>

@@ -112,18 +112,17 @@ public class AllMatchesActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.nav_matches) {
+            Intent intent = new Intent(this, AllMatchesActivity.class);
+            startActivity(intent);
             // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        } else if (id == R.id.nav_recent_matches) {
+            Intent intent = new Intent(this, PreviousMatchesActivity.class);
+            startActivity(intent);
 
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
+        } else if (id == R.id.nav_players) {
+            Intent intent = new Intent(this, PlayersActivity.class);
+            startActivity(intent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -144,7 +143,6 @@ public class AllMatchesActivity extends AppCompatActivity
             @Override
             protected void onPostExecute(String s) {
                 super.onPostExecute(s);
-                Toast.makeText(getApplicationContext(), s, Toast.LENGTH_SHORT).show();
                 try {
                     loadIntoListView(s);
                 } catch (JSONException e) {
@@ -178,7 +176,7 @@ public class AllMatchesActivity extends AppCompatActivity
         String[] matches = new String[jsonArray.length()];
         for (int i = 0; i < jsonArray.length(); i++) {
             JSONObject obj = jsonArray.getJSONObject(i);
-            matches[i] = obj.getString("description");
+            matches[i] = obj.getString("player1_id") + " VS " + obj.getString("player2_id") + " : " + obj.getString("description");
         }
         CustomListAdapter whatever = new CustomListAdapter(this, matches);
         listView.setAdapter(whatever);

@@ -8,4 +8,9 @@
     tools:context="app.univers7.ultra_instinct.PlayersActivity"
     tools:showIn="@layout/app_bar_players">
 
+    <ListView
+        android:id="@+id/allPlayersListViewId"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
 </android.support.constraint.ConstraintLayout>
