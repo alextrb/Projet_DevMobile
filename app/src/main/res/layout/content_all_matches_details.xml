@@ -10,6 +10,60 @@
     tools:showIn="@layout/app_bar_all_matches_details">
 
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/TextViewMatchID"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ID" />
+
+        <TextView
+            android:id="@+id/TextViewMatchPlayer1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Joueur1" />
+
+        <TextView
+            android:id="@+id/TextViewMatchPlayer2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Joueur2" />
+
+        <TextView
+            android:id="@+id/TextViewMatchLatitude"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Latitude" />
+
+        <TextView
+            android:id="@+id/TextViewMatchLongitude"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Longitude" />
+
+        <TextView
+            android:id="@+id/TextViewMatchDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Date" />
+
+        <TextView
+            android:id="@+id/TextViewMatchDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Description" />
+
+        <TextView
+            android:id="@+id/TextViewMatchStatus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Status" />
+    </LinearLayout>
+
     <ImageView
         android:id="@+id/imageview"
         android:layout_width="300dp"

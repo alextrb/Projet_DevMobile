@@ -27,16 +27,23 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class AllMatchesActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    String[] infoArray = {
-            "8 tentacled monster",
-            "Delicious in rolls"
-    };
+    int[] matchesID;
+    String[] matchesPlayer1;
+    String[] matchesPlayer2;
+    Double[] matchesLatitude;
+    Double[] matchesLongitude;
+    String[] matchesDate;
+    String[] matchesDescription;
+    int[] matchesStatus;
 
     ListView listView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +63,7 @@ public class AllMatchesActivity extends AppCompatActivity
             }
         });
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+       DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
@@ -175,17 +182,48 @@ public class AllMatchesActivity extends AppCompatActivity
 
     private void loadIntoListView(String json) throws JSONException {
         JSONArray jsonArray = new JSONArray(json);
-        String[] matches = new String[jsonArray.length()];
+        matchesID = new int[jsonArray.length()];
+        matchesPlayer1 = new String[jsonArray.length()];
+        matchesPlayer2 = new String[jsonArray.length()];
+        matchesLatitude = new Double[jsonArray.length()];
+        matchesLongitude = new Double[jsonArray.length()];
+        matchesDate = new String[jsonArray.length()];
+        matchesDescription = new String[jsonArray.length()];
+        matchesStatus = new int[jsonArray.length()];
+
+        SimpleDateFormat comingDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat trueDateFormat = new SimpleDateFormat("dd-MM-yyyy");
+
         for (int i = 0; i < jsonArray.length(); i++) {
             JSONObject obj = jsonArray.getJSONObject(i);
-            matches[i] = obj.getString("player1_id") + " VS " + obj.getString("player2_id") + " : " + obj.getString("description");
+            matchesID[i] = obj.getInt("id");
+            matchesPlayer1[i] = obj.getString("player1_name");
+            matchesPlayer2[i] = obj.getString("player2_name");
+            matchesLatitude[i] = obj.getDouble("latitude");
+            matchesLongitude[i] = obj.getDouble("longitude");
+            try{
+                Date d = comingDateFormat.parse(obj.getString("date"));
+                matchesDate[i] = trueDateFormat.format(d);
+            }catch(Exception e){
+                e.printStackTrace();
+            }
+            matchesDescription[i] = obj.getString("description");
+            matchesStatus[i] = obj.getInt("status");
         }
-        CustomListAdapter whatever = new CustomListAdapter(this, matches);
+        CustomListAdapter whatever = new CustomListAdapter(this, matchesDescription);
         listView.setAdapter(whatever);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position,long id) {
                 Intent intent = new Intent(AllMatchesActivity.this, AllMatchesDetailsActivity.class);
+                intent.putExtra("id", matchesID[position]);
+                intent.putExtra("player1", matchesPlayer1[position]);
+                intent.putExtra("player2", matchesPlayer2[position]);
+                intent.putExtra("latitude", matchesLatitude[position]);
+                intent.putExtra("longitude", matchesLongitude[position]);
+                intent.putExtra("date", matchesDate[position]);
+                intent.putExtra("description", matchesDescription[position]);
+                intent.putExtra("status", matchesStatus[position]);
                 startActivity(intent);
             }
         });

@@ -26,6 +26,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.io.BufferedInputStream;
 import java.io.File;
@@ -44,6 +45,14 @@ public class AllMatchesDetailsActivity extends AppCompatActivity
     private ImageView imageView;
     String pictureName;
     private Uri file;
+    int id;
+    String player1;
+    String player2;
+    Double latitude;
+    Double longitude;
+    String date;
+    String description;
+    int status;
 
 
     @Override
@@ -74,6 +83,35 @@ public class AllMatchesDetailsActivity extends AppCompatActivity
 
         takePictureButton = (Button) findViewById(R.id.button_image);
         imageView = (ImageView) findViewById(R.id.imageview);
+
+        TextView textViewID = (TextView) findViewById(R.id.TextViewMatchID);
+        TextView textViewPlayer1 = (TextView) findViewById(R.id.TextViewMatchPlayer1);
+        TextView textViewPlayer2 = (TextView) findViewById(R.id.TextViewMatchPlayer2);
+        TextView textViewLatitude = (TextView) findViewById(R.id.TextViewMatchLatitude);
+        TextView textViewLongitude = (TextView) findViewById(R.id.TextViewMatchLongitude);
+        TextView textViewDate = (TextView) findViewById(R.id.TextViewMatchDate);
+        TextView textViewDescription = (TextView) findViewById(R.id.TextViewMatchDescription);
+        TextView textViewStatus = (TextView) findViewById(R.id.TextViewMatchStatus);
+        Bundle extras = getIntent().getExtras(); // on récupère les données transférées par l'intent de la précédente activité
+        if(extras!=null)
+        {
+            id = extras.getInt("id");
+            player1 = extras.getString("player1");
+            player2 = extras.getString("player2");
+            latitude = extras.getDouble("latitude");
+            longitude = extras.getDouble("longitude");
+            date = extras.getString("date");
+            description = extras.getString("description"); // on récupère l'opération précédente
+            status = extras.getInt("status");
+        }
+        textViewID.setText(String.valueOf(id));
+        textViewPlayer1.setText(player1);
+        textViewPlayer2.setText(player2);
+        textViewLatitude.setText(String.valueOf(latitude));
+        textViewLongitude.setText(String.valueOf(longitude));
+        textViewDate.setText(date);
+        textViewDescription.setText(description);
+        textViewStatus.setText(String.valueOf(status));
 
 
         StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
