@@ -8,4 +8,76 @@
     tools:context="app.univers7.ultra_instinct.PlayersDetailsActivity"
     tools:showIn="@layout/app_bar_players_details">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="15dp"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="8dp">
+
+        <TextView
+            android:id="@+id/TextViewPlayerName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="Nom"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/TextViewPlayerOrigin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="Origine : "
+            android:textSize="18sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/TextViewPlayerVictories"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="V : "
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/TextViewPlayerLoses"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="D : "
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/TextViewPlayerKos"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="KO : "
+                android:textSize="18sp" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:text="Description : "
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/TextViewPlayerDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Description"
+            android:textSize="16sp" />
+    </LinearLayout>
 </android.support.constraint.ConstraintLayout>

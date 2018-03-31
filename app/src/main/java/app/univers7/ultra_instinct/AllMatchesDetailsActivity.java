@@ -92,6 +92,7 @@ public class AllMatchesDetailsActivity extends AppCompatActivity
         TextView textViewDate = (TextView) findViewById(R.id.TextViewMatchDate);
         TextView textViewDescription = (TextView) findViewById(R.id.TextViewMatchDescription);
         TextView textViewStatus = (TextView) findViewById(R.id.TextViewMatchStatus);
+
         Bundle extras = getIntent().getExtras(); // on récupère les données transférées par l'intent de la précédente activité
         if(extras!=null)
         {
@@ -171,18 +172,17 @@ public class AllMatchesDetailsActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.nav_matches) {
+            Intent intent = new Intent(this, AllMatchesActivity.class);
+            startActivity(intent);
             // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        } else if (id == R.id.nav_recent_matches) {
+            Intent intent = new Intent(this, PreviousMatchesActivity.class);
+            startActivity(intent);
 
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
+        } else if (id == R.id.nav_players) {
+            Intent intent = new Intent(this, PlayersActivity.class);
+            startActivity(intent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

@@ -30,6 +30,13 @@ import java.net.URL;
 public class PlayersActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    String[] playersName;
+    String[] playersOrigin;
+    String[] playersDescription;
+    int[] playersVictories;
+    int[] playersLoses;
+    int[] playersKos;
+
     ListView listView;
 
     @Override
@@ -161,17 +168,35 @@ public class PlayersActivity extends AppCompatActivity
 
     private void loadIntoListView(String json) throws JSONException {
         JSONArray jsonArray = new JSONArray(json);
-        String[] matches = new String[jsonArray.length()];
+
+        playersName = new String[jsonArray.length()];
+        playersOrigin = new String[jsonArray.length()];
+        playersDescription = new String[jsonArray.length()];
+        playersVictories = new int[jsonArray.length()];
+        playersLoses = new int[jsonArray.length()];
+        playersKos = new int[jsonArray.length()];
+
         for (int i = 0; i < jsonArray.length(); i++) {
             JSONObject obj = jsonArray.getJSONObject(i);
-            matches[i] = obj.getString("name");
+            playersName[i] = obj.getString("name");
+            playersOrigin[i] = obj.getString("origin");
+            playersDescription[i] = obj.getString("description");
+            playersVictories[i] = obj.getInt("victories");
+            playersLoses[i] = obj.getInt("loses");
+            playersKos[i] = obj.getInt("kos");
         }
-        CustomListAdapter whatever = new CustomListAdapter(this, matches);
-        listView.setAdapter(whatever);
+        CustomListAdapterPlayers customListAdapterPlayers = new CustomListAdapterPlayers(this, playersName);
+        listView.setAdapter(customListAdapterPlayers);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position,long id) {
                 Intent intent = new Intent(PlayersActivity.this, PlayersDetailsActivity.class);
+                intent.putExtra("name", playersName[position]);
+                intent.putExtra("origin", playersOrigin[position]);
+                intent.putExtra("description", playersDescription[position]);
+                intent.putExtra("victories", playersVictories[position]);
+                intent.putExtra("loses", playersLoses[position]);
+                intent.putExtra("kos", playersKos[position]);
                 startActivity(intent);
             }
         });

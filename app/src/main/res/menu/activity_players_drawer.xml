@@ -5,15 +5,15 @@
 
         <item
             android:id="@+id/nav_matches"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@drawable/ic_matches"
             android:title="Matchs" />
         <item
             android:id="@+id/nav_recent_matches"
-            android:icon="@drawable/ic_menu_gallery"
+            android:icon="@drawable/ic_recent_matches"
             android:title="Matchs récents" />
         <item
             android:id="@+id/nav_players"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@drawable/ic_players"
             android:title="Joueurs" />
 
 </menu>

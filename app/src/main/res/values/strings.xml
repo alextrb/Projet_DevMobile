@@ -5,11 +5,11 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
-    <string name="title_activity_players">PlayersActivity</string>
-    <string name="title_activity_all_matches">AllMatchesActivity</string>
-    <string name="title_activity_previous_matches">PreviousMatchesActivity</string>
-    <string name="title_activity_all_matches_details">AllMatchesDetailsActivity</string>
-    <string name="title_activity_players_details">PlayersDetailsActivity</string>
-    <string name="title_activity_previous_matches_details">PreviousMatchesDetailsActivity</string>
-    <string name="title_activity_register">RegisterActivity</string>
+    <string name="title_activity_players">Joueurs</string>
+    <string name="title_activity_all_matches">Matchs</string>
+    <string name="title_activity_previous_matches">Matchs récents</string>
+    <string name="title_activity_all_matches_details">Détails du match</string>
+    <string name="title_activity_players_details">Informations sur le joueur</string>
+    <string name="title_activity_previous_matches_details">Détails du match</string>
+    <string name="title_activity_register">Ajouter un joueur</string>
 </resources>
