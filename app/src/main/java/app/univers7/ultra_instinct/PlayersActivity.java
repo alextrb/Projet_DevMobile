@@ -66,7 +66,6 @@ public class PlayersActivity extends AppCompatActivity
 
         listView = (ListView) findViewById(R.id.allPlayersListViewId);
 
-        getAllPlayers("http://ultra-instinct-ece.000webhostapp.com/getPlayersList.php");
     }
 
     @Override
@@ -201,5 +200,12 @@ public class PlayersActivity extends AppCompatActivity
             }
         });
 
+    }
+
+    @Override
+    protected void onResume()
+    {
+        super.onResume();
+        getAllPlayers("http://ultra-instinct-ece.000webhostapp.com/getPlayersList.php");
     }
 }
