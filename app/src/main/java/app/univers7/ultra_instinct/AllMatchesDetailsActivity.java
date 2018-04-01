@@ -6,6 +6,7 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.StrictMode;
@@ -27,11 +28,19 @@ import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.BufferedInputStream;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.text.SimpleDateFormat;
@@ -219,6 +228,112 @@ public class AllMatchesDetailsActivity extends AppCompatActivity
         if (requestCode == 100) {
             if (resultCode == RESULT_OK) {
                 imageView.setImageBitmap(getImageBitmap("file:///sdcard/Pictures/" + pictureName));
+                // Start the async task to load the path to the photo into the database
+                class InsertDataAsync extends AsyncTask<String, Void, String> {
+
+                    @Override
+                    protected void onPreExecute() {
+                        super.onPreExecute();
+                    }
+
+                    @Override
+                    protected String doInBackground(String... strings) {
+                        URL url;
+                        HttpURLConnection conn;
+                        try {
+
+                            url = new URL("http://ultra-instinct-ece.000webhostapp.com/addPhoto.php");
+
+
+                        } catch (MalformedURLException e) {
+                            e.printStackTrace();
+                            return "exception";
+                        }
+                        try {
+                            // Setup HttpURLConnection class to send and receive data from php and mysql
+                            conn = (HttpURLConnection) url.openConnection();
+                            conn.setRequestMethod("POST");
+
+                            // setDoInput and setDoOutput method depict handling of both send and receive
+                            conn.setDoInput(true);
+                            conn.setDoOutput(true);
+
+                            // Append parameters to URL
+                            Uri.Builder builder = new Uri.Builder()
+                                    .appendQueryParameter("match_id", strings[0])
+                                    .appendQueryParameter("path", strings[1]);
+                            String query = builder.build().getEncodedQuery();
+
+                            // Open connection for sending data
+                            OutputStream os = conn.getOutputStream();
+                            BufferedWriter writer = new BufferedWriter(
+                                    new OutputStreamWriter(os, "UTF-8"));
+                            writer.write(query);
+                            writer.flush();
+                            writer.close();
+                            os.close();
+                            conn.connect();
+
+                        } catch (IOException e1) {
+                            e1.printStackTrace();
+                            return "exception";
+                        }
+
+                        try {
+
+                            int response_code = conn.getResponseCode();
+
+                            // Check if successful connection made
+                            if (response_code == HttpURLConnection.HTTP_OK) {
+
+                                // Read data sent from server
+                                InputStream input = conn.getInputStream();
+                                BufferedReader reader = new BufferedReader(new InputStreamReader(input));
+                                StringBuilder result = new StringBuilder();
+                                String line;
+
+                                while ((line = reader.readLine()) != null) {
+                                    result.append(line);
+                                }
+
+                                // Pass data to onPostExecute method
+                                return(result.toString());
+
+                            }else{
+
+                                return("unsuccessful");
+                            }
+
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                            return "exception";
+                        } finally {
+                            conn.disconnect();
+                        }
+                    }
+
+                    @Override
+                    protected void onPostExecute(String result) {
+                        super.onPostExecute(result);
+                        if(result.equalsIgnoreCase("true"))
+                        {
+                        }else if (result.equalsIgnoreCase("false")){
+
+                            // If username and password does not match display a error message
+                            Toast.makeText(AllMatchesDetailsActivity.this, "Erreur avec l'insertion de la photo dans la BDD", Toast.LENGTH_LONG).show();
+
+                        } else if (result.equalsIgnoreCase("exception") || result.equalsIgnoreCase("unsuccessful")) {
+
+                            Toast.makeText(AllMatchesDetailsActivity.this, "OOPs! Something went wrong. Connection Problem.", Toast.LENGTH_LONG).show();
+
+                        }
+                    }
+
+                }
+                InsertDataAsync insertDataAsync = new InsertDataAsync();
+                // TODO mettre les données correspondant à la table
+
+                insertDataAsync.execute(Integer.toString(id),"file:///sdcard/Pictures/" + pictureName);
             }
         }
     }
