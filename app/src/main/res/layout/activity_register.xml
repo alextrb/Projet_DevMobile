@@ -33,7 +33,7 @@
             android:layout_marginBottom="10dp"
             android:ems="10"
             android:hint="Nom"
-            android:textColor="@android:color/holo_purple"
+            android:inputType="textPersonName"
             android:textSize="14sp" />
 
         <TextView
@@ -50,8 +50,7 @@
             android:layout_marginBottom="10dp"
             android:ems="10"
             android:hint="Origine"
-            android:inputType="none"
-            android:textColor="@android:color/holo_purple"
+            android:inputType="none|textPersonName"
             android:textSize="14sp" />
 
         <TextView
@@ -69,7 +68,6 @@
             android:ems="10"
             android:hint="Description"
             android:inputType="textMultiLine"
-            android:textColor="@android:color/holo_purple"
             android:textSize="14sp" />
 
         <Button
