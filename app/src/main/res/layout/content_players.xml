@@ -8,9 +8,35 @@
     tools:context="app.univers7.ultra_instinct.PlayersActivity"
     tools:showIn="@layout/app_bar_players">
 
-    <ListView
-        android:id="@+id/allPlayersListViewId"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="210dp"
+            android:layout_marginBottom="20dp"
+            app:srcCompat="@drawable/players" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="LISTE DES JOUEURS :"
+            android:textColor="@android:color/background_dark"
+            android:textSize="24sp" />
+
+        <ListView
+            android:id="@+id/allPlayersListViewId"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </ListView>
+
+    </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

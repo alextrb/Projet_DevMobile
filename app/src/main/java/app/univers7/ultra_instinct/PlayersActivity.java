@@ -46,7 +46,7 @@ public class PlayersActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab_register);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -24,4 +24,9 @@ public class RegisterActivity extends AppCompatActivity {
 
     }
 
+    public void registerPlayer(View view)
+    {
+
+    }
+
 }
