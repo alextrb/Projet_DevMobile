@@ -76,7 +76,6 @@ public class RegisterActivity extends AppCompatActivity {
 
                         url = new URL("http://ultra-instinct-ece.000webhostapp.com/addPlayer.php");
 
-
                     } catch (MalformedURLException e) {
                         // TODO Auto-generated catch block
                         e.printStackTrace();
@@ -155,7 +154,6 @@ public class RegisterActivity extends AppCompatActivity {
                 /* Here launching another activity when login successful. If you persist login state
                 use sharedPreferences of Android. and logout button to clear sharedPreferences.
                  */
-
                         Intent intent = new Intent(RegisterActivity.this, PlayersActivity.class);
                         startActivity(intent);
                         RegisterActivity.this.finish();
