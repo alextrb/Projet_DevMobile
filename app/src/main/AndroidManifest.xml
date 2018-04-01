@@ -44,7 +44,16 @@
             android:name=".PreviousMatchesDetailsActivity"
             android:label="@string/title_activity_previous_matches_details"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".AddMatchActivity"></activity>
+        <activity
+            android:name=".AddMatchActivity"
+            android:label="Création d'un match"
+            android:parentActivityName=".AllMatchesActivity"
+            />
+        <activity
+            android:name=".RegisterActivity"
+            android:label="Insertion d'un joueur"
+            android:parentActivityName=".PlayersActivity"
+            />
     </application>
 
 </manifest>

@@ -35,6 +35,8 @@ public class AddMatchActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_match);
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         button_add_match =(Button) findViewById(R.id.add_match);
         description_textView = (TextView) findViewById(R.id.description);
 
