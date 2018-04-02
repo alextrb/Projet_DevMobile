@@ -4,8 +4,9 @@ import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class EditMatchActivity extends AppCompatActivity implements EditMatchGestionFragment.OnFragmentInteractionListener{
+public class EditMatchActivity extends AppCompatActivity implements EditMatchGestionFragment.OnFragmentInteractionListener, EditMatchScoreFragment.OnFragmentInteractionListener{
 
+    EditMatchScoreFragment editMatchScoreFragment;
     EditMatchGestionFragment editMatchGestionFragment;
 
     @Override
@@ -15,8 +16,10 @@ public class EditMatchActivity extends AppCompatActivity implements EditMatchGes
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        editMatchScoreFragment = new EditMatchScoreFragment();
         editMatchGestionFragment = new EditMatchGestionFragment();
 
+        getSupportFragmentManager().beginTransaction().add(R.id.fl_score, editMatchScoreFragment).commitNow();
         getSupportFragmentManager().beginTransaction().add(R.id.fl_gestion, editMatchGestionFragment).commitNow();
     }
 
