@@ -62,6 +62,27 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Status" />
+
+        <Button
+            android:id="@+id/btn_editMatch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="matchButtonsManager"
+            android:text="Gestion du combat" />
+
+        <Button
+            android:id="@+id/btn_stats"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="matchButtonsManager"
+            android:text="Statistiques" />
+
+        <Button
+            android:id="@+id/btn_pictures"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="matchButtonsManager"
+            android:text="Photos" />
     </LinearLayout>
 
     <ImageView

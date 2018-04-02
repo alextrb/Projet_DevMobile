@@ -360,4 +360,30 @@ public class AllMatchesDetailsActivity extends AppCompatActivity
         }
         return bm;
     }
+
+    public void matchButtonsManager(View view)
+    {
+        switch(view.getId())
+        {
+            case R.id.btn_editMatch:
+                Intent intent_editmatch = new Intent(AllMatchesDetailsActivity.this, EditMatchActivity.class);
+                intent_editmatch.putExtra("id", id);
+                intent_editmatch.putExtra("player1", player1);
+                intent_editmatch.putExtra("player2", player2);
+                intent_editmatch.putExtra("status", status);
+                startActivity(intent_editmatch);
+                break;
+
+            case R.id.btn_stats:
+                Intent intent_stats = new Intent(AllMatchesDetailsActivity.this, StatsActivity.class);
+                intent_stats.putExtra("id", id);
+                intent_stats.putExtra("player1", player1);
+                intent_stats.putExtra("player2", player2);
+                startActivity(intent_stats);
+                break;
+
+            case R.id.btn_pictures:
+                break;
+        }
+    }
 }

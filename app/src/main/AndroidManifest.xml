@@ -17,9 +17,9 @@
         <activity
             android:name=".AllMatchesActivity"
             android:label="@string/title_activity_all_matches"
-            android:theme="@style/AppTheme.NoActionBar"
             android:launchMode="singleInstance"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -29,42 +29,50 @@
         <activity
             android:name=".PlayersActivity"
             android:label="@string/title_activity_players"
-            android:theme="@style/AppTheme.NoActionBar"
             android:launchMode="singleInstance"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".PreviousMatchesActivity"
             android:label="@string/title_activity_previous_matches"
-            android:theme="@style/AppTheme.NoActionBar"
             android:launchMode="singleInstance"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".AllMatchesDetailsActivity"
             android:label="@string/title_activity_all_matches_details"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:launchMode="singleInstance"/>
+            android:launchMode="singleInstance"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".PlayersDetailsActivity"
             android:label="@string/title_activity_players_details"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:launchMode="singleInstance"/>
+            android:launchMode="singleInstance"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".PreviousMatchesDetailsActivity"
             android:label="@string/title_activity_previous_matches_details"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:launchMode="singleInstance"/>
+            android:launchMode="singleInstance"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".AddMatchActivity"
-            android:label="Création d'un match"
+            android:label="Création d&apos;un match"
             android:parentActivityName=".AllMatchesActivity"
-            android:screenOrientation="portrait"
-            />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".RegisterActivity"
-            android:label="Insertion d'un joueur"
+            android:label="Insertion d&apos;un joueur"
             android:parentActivityName=".PlayersActivity"
-            android:screenOrientation="portrait"
-            />
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".EditMatchActivity"
+            android:label="Gérer le combat"
+            android:launchMode="singleInstance"
+            android:parentActivityName=".AllMatchesDetailsActivity" />
+        <activity
+            android:name=".StatsActivity"
+            android:label="Statistiques du combat"
+            android:launchMode="singleInstance"
+            android:parentActivityName=".AllMatchesDetailsActivity"/>
     </application>
 
 </manifest>
