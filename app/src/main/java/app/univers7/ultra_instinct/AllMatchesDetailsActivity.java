@@ -15,6 +15,8 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -30,6 +32,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -44,6 +50,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 public class AllMatchesDetailsActivity extends AppCompatActivity
@@ -63,6 +70,9 @@ public class AllMatchesDetailsActivity extends AppCompatActivity
     String description;
     int status;
 
+    String image_ids[];
+          /* "file:///sdcard/Download/MigattenoGokuiPerfectHeroes.png",
+            "file:///sdcard/Pictures/Match20180328_231632.jpg"*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -138,6 +148,15 @@ public class AllMatchesDetailsActivity extends AppCompatActivity
                 takePicture(imageView);
             }
         });
+
+        /*RecyclerView recyclerView = (RecyclerView) findViewById(R.id.galleryMatchesDetails);
+        recyclerView.setHasFixedSize(true);
+
+        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getApplicationContext(), 3);
+        recyclerView.setLayoutManager(layoutManager);
+        ArrayList<CellRecyclerView> cells = prepareData();
+        AdapterRecyclerView adapterRecyclerView = new AdapterRecyclerView(getApplicationContext(), cells);
+        recyclerView.setAdapter(adapterRecyclerView); */
 
         imageView.setImageBitmap(getImageBitmap("file:///sdcard/Download/MigattenoGokuiPerfectHeroes.png"));
 
@@ -385,5 +404,104 @@ public class AllMatchesDetailsActivity extends AppCompatActivity
             case R.id.btn_pictures:
                 break;
         }
+    }
+
+    private ArrayList<CellRecyclerView> prepareData(){
+        ArrayList<CellRecyclerView> theImage = new ArrayList<>();
+        for (int i = 0; i < image_ids.length; i++){
+            CellRecyclerView cell   = new CellRecyclerView();
+            cell.setImg(image_ids[i]);
+            theImage.add(cell);
+        }
+        return theImage;
+    }
+
+    private void getPicturesOfThisMatch(final String urlWebService, final Integer idMatch){
+        class GetPhotoUrls extends AsyncTask<String, Void, String> {
+
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+            }
+
+            @Override
+            protected void onPostExecute(String s) {
+                super.onPostExecute(s);
+                try {
+                    loadIntoImageIds(s);
+
+                    RecyclerView recyclerView = (RecyclerView) findViewById(R.id.galleryMatchesDetails);
+                    recyclerView.setHasFixedSize(true);
+
+                    RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getApplicationContext(), 3);
+                    recyclerView.setLayoutManager(layoutManager);
+                    ArrayList<CellRecyclerView> cells = prepareData();
+                    AdapterRecyclerView adapterRecyclerView = new AdapterRecyclerView(getApplicationContext(), cells);
+                    recyclerView.setAdapter(adapterRecyclerView);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            protected String doInBackground(String... strings) {
+                try {
+                    URL url = new URL(urlWebService);
+                    HttpURLConnection con = (HttpURLConnection) url.openConnection();
+
+                    con.setRequestMethod("POST");
+
+                    // setDoInput and setDoOutput method depict handling of both send and receive
+                    con.setDoInput(true);
+                    con.setDoOutput(true);
+
+                    // Append parameters to URL
+                    Uri.Builder builder = new Uri.Builder()
+                            .appendQueryParameter("match_id", strings[0]);
+                    String query = builder.build().getEncodedQuery();
+
+                    // Open connection for sending data
+                    OutputStream os = con.getOutputStream();
+                    BufferedWriter writer = new BufferedWriter(
+                            new OutputStreamWriter(os, "UTF-8"));
+                    writer.write(query);
+                    writer.flush();
+                    writer.close();
+                    os.close();
+                    con.connect();
+
+
+                    StringBuilder sb = new StringBuilder();
+                    BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(con.getInputStream()));
+                    String json;
+                    while ((json = bufferedReader.readLine()) != null) {
+                        sb.append(json + "\n");
+                    }
+                    return sb.toString().trim();
+                } catch (Exception e) {
+                    return null;
+                }
+            }
+        }
+        GetPhotoUrls getPhotoUrls = new GetPhotoUrls();
+        getPhotoUrls.execute(Integer.toString(id));
+    }
+
+    private void loadIntoImageIds(String json) throws JSONException {
+        JSONArray jsonArray = new JSONArray(json);
+
+        image_ids = new String[jsonArray.length()];
+
+        for (int i = 0; i < jsonArray.length(); i++){
+            JSONObject jsonObject = jsonArray.getJSONObject(i);
+            image_ids[i] = jsonObject.getString("path");
+        }
+    }
+
+    @Override
+    protected void onResume()
+    {
+        super.onResume();
+        getPicturesOfThisMatch("http://ultra-instinct-ece.000webhostapp.com/getPhotosMatchesDetails.php", id);
     }
 }
