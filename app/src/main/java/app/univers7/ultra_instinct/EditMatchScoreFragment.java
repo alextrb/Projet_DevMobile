@@ -1,31 +1,21 @@
 package app.univers7.ultra_instinct;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
 
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link EditMatchScoreFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link EditMatchScoreFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class EditMatchScoreFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private TextView tv_score_p1, tv_score_p2;
+    private TextView tv_r1_p1, tv_r2_p1, tv_r3_p1, tv_r4_p1, tv_r5_p1, tv_r1_p2, tv_r2_p2, tv_r3_p2, tv_r4_p2, tv_r5_p2;
 
     private OnFragmentInteractionListener mListener;
 
@@ -33,38 +23,30 @@ public class EditMatchScoreFragment extends Fragment {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment EditMatchScoreFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static EditMatchScoreFragment newInstance(String param1, String param2) {
-        EditMatchScoreFragment fragment = new EditMatchScoreFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_edit_match_score, container, false);
+        View view = inflater.inflate(R.layout.fragment_edit_match_score, container, false);
+        tv_score_p1 = (TextView) view.findViewById(R.id.tv_score_p1);
+        tv_score_p2 = (TextView) view.findViewById(R.id.tv_score_p2);
+        tv_r1_p1 = (TextView) view.findViewById(R.id.tv_r1_p1);
+        tv_r2_p1 = (TextView) view.findViewById(R.id.tv_r2_p1);
+        tv_r3_p1 = (TextView) view.findViewById(R.id.tv_r3_p1);
+        tv_r4_p1 = (TextView) view.findViewById(R.id.tv_r4_p1);
+        tv_r5_p1 = (TextView) view.findViewById(R.id.tv_r5_p1);
+        tv_r1_p2 = (TextView) view.findViewById(R.id.tv_r1_p2);
+        tv_r2_p2 = (TextView) view.findViewById(R.id.tv_r2_p2);
+        tv_r3_p2 = (TextView) view.findViewById(R.id.tv_r3_p2);
+        tv_r4_p2 = (TextView) view.findViewById(R.id.tv_r4_p2);
+        tv_r5_p2 = (TextView) view.findViewById(R.id.tv_r5_p2);
+
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -104,5 +86,108 @@ public class EditMatchScoreFragment extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+
+    public void initializeScore(String p1, String p2,
+                                int p1r1, int p1r2, int p1r3, int p1r4, int p1r5,
+                                int p2r1, int p2r2, int p2r3, int p2r4, int p2r5)
+    {
+        tv_score_p1.setText(p1);
+        tv_score_p2.setText(p2);
+        tv_r1_p1.setText(String.valueOf(p1r1));
+        tv_r2_p1.setText(String.valueOf(p1r1 + p1r2));
+        tv_r3_p1.setText(String.valueOf(p1r1 + p1r2 + p1r3));
+        tv_r4_p1.setText(String.valueOf(p1r1 + p1r2 + p1r3 + p1r4));
+        tv_r5_p1.setText(String.valueOf(p1r1 + p1r2 + p1r3 + p1r4 + p1r5));
+        tv_r1_p2.setText(String.valueOf(p2r1));
+        tv_r2_p2.setText(String.valueOf(p2r1 + p2r2));
+        tv_r3_p2.setText(String.valueOf(p2r1 + p2r2 + p2r3));
+        tv_r4_p2.setText(String.valueOf(p2r1 + p2r2 + p2r3 + p2r4));
+        tv_r5_p2.setText(String.valueOf(p2r1 + p2r2 + p2r3 + p2r4 + p2r5));
+    }
+
+    public void updateScore(int round_number, String player, int value)
+    {
+        switch(round_number)
+        {
+            case 1:
+            {
+                if(player == "p1")
+                {
+                    tv_r1_p1.setText(String.valueOf(value));
+                }
+                else if(player == "p2")
+                {
+                    tv_r1_p2.setText(String.valueOf(value));
+                }
+                break;
+            }
+
+            case 2:
+            {
+                if(player == "p1")
+                {
+                    tv_r2_p1.setText(String.valueOf(value));
+                }
+                else if(player == "p2")
+                {
+                    tv_r2_p2.setText(String.valueOf(value));
+                }
+                break;
+            }
+
+            case 3:
+            {
+                if(player == "p1")
+                {
+                    tv_r3_p1.setText(String.valueOf(value));
+                }
+                else if(player == "p2")
+                {
+                    tv_r3_p2.setText(String.valueOf(value));
+                }
+                break;
+            }
+
+            case 4:
+            {
+                if(player == "p1")
+                {
+                    tv_r4_p1.setText(String.valueOf(value));
+                }
+                else if(player == "p2")
+                {
+                    tv_r4_p2.setText(String.valueOf(value));
+                }
+                break;
+            }
+
+            case 5:
+            {
+                if(player == "p1")
+                {
+                    tv_r5_p1.setText(String.valueOf(value));
+                }
+                else if(player == "p2")
+                {
+                    tv_r5_p2.setText(String.valueOf(value));
+                }
+                break;
+            }
+        }
+    }
+
+    public void setWinnerRowColor(String winner)
+    {
+        if(winner == "p1")
+        {
+            tv_score_p1.setBackgroundColor(Color.parseColor("#437932"));
+            tv_score_p2.setBackgroundColor(Color.parseColor("#a85a5a"));
+        }
+        else if(winner == "p2")
+        {
+            tv_score_p2.setBackgroundColor(Color.parseColor("#437932"));
+            tv_score_p1.setBackgroundColor(Color.parseColor("#a85a5a"));
+        }
     }
 }

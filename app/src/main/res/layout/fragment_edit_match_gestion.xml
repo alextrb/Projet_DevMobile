@@ -51,7 +51,7 @@
                     android:textSize="10sp" />
 
                 <Button
-                    android:id="@+id/edit_j1_kh"
+                    android:id="@+id/edit_j1_hk"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="2dp"

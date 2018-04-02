@@ -41,12 +41,10 @@
         <activity
             android:name=".AllMatchesDetailsActivity"
             android:label="@string/title_activity_all_matches_details"
-            android:launchMode="singleInstance"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".PlayersDetailsActivity"
             android:label="@string/title_activity_players_details"
-            android:launchMode="singleInstance"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".PreviousMatchesDetailsActivity"
@@ -66,12 +64,10 @@
         <activity
             android:name=".EditMatchActivity"
             android:label="Gérer le combat"
-            android:launchMode="singleInstance"
             android:parentActivityName=".AllMatchesDetailsActivity" />
         <activity
             android:name=".StatsActivity"
             android:label="Statistiques du combat"
-            android:launchMode="singleInstance"
             android:parentActivityName=".AllMatchesDetailsActivity"/>
     </application>
 
