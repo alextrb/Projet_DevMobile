@@ -92,10 +92,10 @@
 
     <ImageView
         android:id="@+id/imageview"
-        android:layout_width="300dp"
-        android:layout_height="700dp"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
         android:layout_centerHorizontal="true"
-        android:layout_above="@+id/button_image"/>
+        android:layout_alignParentRight="true"/>
 
     <Button
         android:id="@+id/button_image"
