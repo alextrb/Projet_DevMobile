@@ -18,7 +18,7 @@
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="match_parent"
-            android:layout_height="177dp"
+            android:layout_height="195dp"
             android:layout_marginBottom="20dp"
             app:srcCompat="@drawable/allmatches" />
 
