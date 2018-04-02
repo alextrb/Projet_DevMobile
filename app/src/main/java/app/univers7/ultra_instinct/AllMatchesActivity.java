@@ -208,7 +208,7 @@ public class AllMatchesActivity extends AppCompatActivity
             matchesDescription[i] = obj.getString("description");
             matchesStatus[i] = obj.getInt("status");
         }
-        CustomListAdapter whatever = new CustomListAdapter(this, matchesDescription);
+        CustomListAdapter whatever = new CustomListAdapter(this, matchesPlayer1, matchesPlayer2, matchesDate, matchesDescription, matchesStatus);
         listView.setAdapter(whatever);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
