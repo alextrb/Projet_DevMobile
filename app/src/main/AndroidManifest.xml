@@ -60,7 +60,10 @@
             android:label="Gérer le combat" />
         <activity
             android:name=".StatsActivity"
-            android:label="Statistiques du combat"/>
+            android:label="Statistiques du combat"
+
+            android:parentActivityName=".AllMatchesDetailsActivity" />
+        <activity android:name=".TakePhotoActivity"></activity>
     </application>
 
 </manifest>
