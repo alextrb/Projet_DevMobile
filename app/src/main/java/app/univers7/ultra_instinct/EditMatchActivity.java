@@ -194,7 +194,7 @@ public class EditMatchActivity extends AppCompatActivity implements EditMatchGes
             scoreP2R5 = obj.getInt("round5_player2");
         }
 
-        editMatchScoreFragment.initializeScore(player1Name, player2Name, scoreP1R1, scoreP1R2, scoreP1R3, scoreP1R4, scoreP1R5, scoreP2R1, scoreP2R2, scoreP2R3, scoreP2R4, scoreP2R5);
+        editMatchScoreFragment.initializeScore(player1Name, player2Name, roundNumber, scoreP1R1, scoreP1R2, scoreP1R3, scoreP1R4, scoreP1R5, scoreP2R1, scoreP2R2, scoreP2R3, scoreP2R4, scoreP2R5);
         editMatchGestionFragment.setNextRound(roundNumber);
         editMatchGestionFragment.setPlayersName(player1Name, player2Name);
         editMatchScoreFragment.updateScore(roundNumber, "p1", scoreP1R1+scoreP1R2+scoreP1R3+scoreP1R4+scoreP1R5);
