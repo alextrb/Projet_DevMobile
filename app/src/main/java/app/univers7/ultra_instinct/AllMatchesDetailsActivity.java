@@ -70,11 +70,8 @@ public class AllMatchesDetailsActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        TextView textViewID = (TextView) findViewById(R.id.TextViewMatchID);
-        TextView textViewPlayer1 = (TextView) findViewById(R.id.TextViewMatchPlayer1);
-        TextView textViewPlayer2 = (TextView) findViewById(R.id.TextViewMatchPlayer2);
-        TextView textViewLatitude = (TextView) findViewById(R.id.TextViewMatchLatitude);
-        TextView textViewLongitude = (TextView) findViewById(R.id.TextViewMatchLongitude);
+        TextView textViewPlayers = (TextView) findViewById(R.id.TextViewMatchPlayers);
+        TextView textViewAddress = (TextView) findViewById(R.id.TextViewMatchAddress);
         TextView textViewDate = (TextView) findViewById(R.id.TextViewMatchDate);
         TextView textViewDescription = (TextView) findViewById(R.id.TextViewMatchDescription);
         TextView textViewStatus = (TextView) findViewById(R.id.TextViewMatchStatus);
@@ -92,11 +89,8 @@ public class AllMatchesDetailsActivity extends AppCompatActivity
             status = extras.getInt("status");
         }
 
-        textViewID.setText(String.valueOf(id));
-        textViewPlayer1.setText(player1);
-        textViewPlayer2.setText(player2);
-        textViewLatitude.setText(String.valueOf(latitude));
-        textViewLongitude.setText(String.valueOf(longitude));
+        textViewPlayers.setText(player1 + " VS " + player2);
+        textViewAddress.setText(getGeocoding(latitude, longitude));
         textViewDate.setText(date);
         textViewDescription.setText(description);
         textViewStatus.setText(String.valueOf(status));
@@ -181,30 +175,21 @@ public class AllMatchesDetailsActivity extends AppCompatActivity
 
     }
 
-    public void getGeocoding(Double latitude, Double longitude)
+    public String getGeocoding(Double latitude, Double longitude)
     {
         Geocoder geocoder;
         List<Address> addresses;
+        String address = " ";
         geocoder = new Geocoder(this, Locale.getDefault());
 
         try {
             addresses = geocoder.getFromLocation(latitude, longitude, 1); // Here 1 represent max location result to returned, by documents it recommended 1 to 5
-            String address = addresses.get(0).getAddressLine(0); // If any additional address line present than only, check with max available address lines by getMaxAddressLineIndex()
-            String city = addresses.get(0).getLocality();
-            String state = addresses.get(0).getAdminArea();
-            String country = addresses.get(0).getCountryName();
-            String postalCode = addresses.get(0).getPostalCode();
-            String knownName = addresses.get(0).getFeatureName();
-
-            System.out.println(address);
-            System.out.println(city);
-            System.out.println(state);
-            System.out.println(country);
-            System.out.println(postalCode);
-            System.out.println(knownName);
+            address = addresses.get(0).getAddressLine(0); // If any additional address line present than only, check with max available address lines by getMaxAddressLineIndex()
 
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        return address;
     }
 }

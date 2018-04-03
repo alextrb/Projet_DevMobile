@@ -27,8 +27,8 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
             + VICTORIES + " integer, "
             + LOSES + " integer, "
             + KOS + " integer, "
-            + COLUMN_LAT + " integer, "
-            + COLUMN_LNG + " integer);";
+            + COLUMN_LAT + " real, "
+            + COLUMN_LNG + " real);";
 
     public MySQLiteHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);

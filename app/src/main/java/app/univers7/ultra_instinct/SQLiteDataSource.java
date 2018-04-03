@@ -35,7 +35,7 @@ public class SQLiteDataSource {
         dbHelper.close();
     }
 
-    public SQLiteMatch createMatch (String player1_name, String player2_name, int victories, int loses, int kos, int lat, int lng){
+    public SQLiteMatch createMatch (String player1_name, String player2_name, int victories, int loses, int kos, Double lat, Double lng){
         ContentValues values = new ContentValues();
         values.put (MySQLiteHelper.PLAYER1_NAME, player1_name);
         values.put(MySQLiteHelper.PLAYER2_NAME, player2_name);
@@ -55,6 +55,11 @@ public class SQLiteDataSource {
         return newMatchInfos;
     }
 
+    public void deleteAllMatchs()
+    {
+        database.delete(MySQLiteHelper.TABLE_RECENT_MATCHES, null, null);
+    }
+
     public SQLiteMatch cursorMatch(Cursor cursor){
         SQLiteMatch MatchInfos = new SQLiteMatch();
 
@@ -64,8 +69,8 @@ public class SQLiteDataSource {
         MatchInfos.setVictories(cursor.getInt(3));
         MatchInfos.setLoses(cursor.getInt(4));
         MatchInfos.setKos(cursor.getInt(5));
-        MatchInfos.setLat(cursor.getInt(6));
-        MatchInfos.setLng(cursor.getInt(7));
+        MatchInfos.setLat(cursor.getDouble(6));
+        MatchInfos.setLng(cursor.getDouble(7));
 
         return MatchInfos;
     }

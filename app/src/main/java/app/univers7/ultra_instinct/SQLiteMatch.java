@@ -12,8 +12,8 @@ public class SQLiteMatch {
     private int victories;
     private int loses;
     private int kos;
-    private int lat;
-    private int lng;
+    private Double lat;
+    private Double lng;
 
     public long getId() {
         return id;
@@ -63,19 +63,19 @@ public class SQLiteMatch {
         this.kos = kos;
     }
 
-    public int getLat() {
+    public Double getLat() {
         return lat;
     }
 
-    public void setLat(int lat) {
+    public void setLat(Double lat) {
         this.lat = lat;
     }
 
-    public int getLng() {
+    public Double getLng() {
         return lng;
     }
 
-    public void setLng(int lng) {
+    public void setLng(Double lng) {
         this.lng = lng;
     }
 }

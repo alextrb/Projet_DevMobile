@@ -44,8 +44,8 @@ public class PreviousMatchesActivity extends AppCompatActivity
     int[] victories;
     int[] loses;
     int[] kos;
-    int[] lat;
-    int[] lng;
+    Double[] lat;
+    Double[] lng;
 
     private SQLiteDataSource dataSource;
 
@@ -234,6 +234,7 @@ public class PreviousMatchesActivity extends AppCompatActivity
                 super.onPostExecute(result);
                 try {
                     initializeMatchsInfos(result);
+                    createTable(player1_name, player2_name, victories, loses, kos, lat, lng);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -247,24 +248,43 @@ public class PreviousMatchesActivity extends AppCompatActivity
     public void initializeMatchsInfos(String json) throws  JSONException
     {
         JSONArray jsonArray = new JSONArray(json);
+        player1_name = new String[jsonArray.length()];
+        player2_name = new String[jsonArray.length()];
+        victories = new int[jsonArray.length()];
+        loses = new int[jsonArray.length()];
+        kos = new int[jsonArray.length()];
+        lat = new Double[jsonArray.length()];
+        lng = new Double[jsonArray.length()];
 
         for (int i = 0; i < jsonArray.length(); i++) {
             JSONObject obj = jsonArray.getJSONObject(i);
 
-            matchID[i] = obj.getLong("id");
             player1_name[i] = obj.getString("player1_name");
             player2_name[i] = obj.getString("player2_name");
             victories[i] = obj.getInt("victories");
             loses[i] = obj.getInt("loses");
             kos[i] = obj.getInt("kos");
-            lat[i] = obj.getInt("lat");
-            lng[i] = obj.getInt("lng");
+            lat[i] = obj.getDouble("latitude");
+            lng[i] = obj.getDouble("longitude");
         }
     }
 
-    public void createTable (String[] player1_name, String[] player2_name, Integer[] victories, Integer[] loses, Integer[] kos, Integer[] lat, Integer[] lng){
+    public void createTable (String[] player1_name, String[] player2_name, int[] victories, int[] loses, int[] kos, Double[] lat, Double[] lng){
+        dataSource.deleteAllMatchs();
         for(int i = 0; i < player1_name.length; i++){
             dataSource.createMatch(player1_name[i], player2_name[i], victories[i], loses[i], kos[i], lat[i], lng[i]);
         }
+    }
+    @Override
+    protected void onResume()
+    {
+        super.onResume();
+        dataSource.open();
+    }
+    @Override
+    protected void onPause()
+    {
+        super.onPause();
+        dataSource.close();
     }
 }

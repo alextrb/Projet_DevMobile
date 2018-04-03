@@ -18,77 +18,80 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
+            android:layout_weight="2"
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/TextViewMatchID"
+                android:id="@+id/TextViewMatchPlayers"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="ID" />
-
-            <TextView
-                android:id="@+id/TextViewMatchPlayer1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Joueur1" />
-
-            <TextView
-                android:id="@+id/TextViewMatchPlayer2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Joueur2" />
-
-            <TextView
-                android:id="@+id/TextViewMatchLatitude"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Latitude" />
-
-            <TextView
-                android:id="@+id/TextViewMatchLongitude"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Longitude" />
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="Joueur 1 VS Joueur 2"
+                android:textSize="24sp" />
 
             <TextView
                 android:id="@+id/TextViewMatchDate"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Date" />
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="Date"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/TextViewMatchAddress"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="Adresse"
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/TextViewMatchDescription"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Description" />
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="Description"
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/TextViewMatchStatus"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Status" />
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="Status"
+                android:textSize="18sp" />
 
-            <Button
-                android:id="@+id/btn_editMatch"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:onClick="matchButtonsManager"
-                android:text="Gestion du combat" />
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal">
 
-            <Button
-                android:id="@+id/btn_stats"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:onClick="matchButtonsManager"
-                android:text="Statistiques" />
+                <Button
+                    android:id="@+id/btn_editMatch"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:onClick="matchButtonsManager"
+                    android:text="Gestion du combat" />
 
-            <Button
-                android:id="@+id/btn_pictures"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:onClick="matchButtonsManager"
-                android:text="Photos" />
+                <Button
+                    android:id="@+id/btn_stats"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:onClick="matchButtonsManager"
+                    android:text="Statistiques" />
+
+                <Button
+                    android:id="@+id/btn_pictures"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:onClick="matchButtonsManager"
+                    android:text="Photos" />
+
+            </LinearLayout>
 
 
         </LinearLayout>
