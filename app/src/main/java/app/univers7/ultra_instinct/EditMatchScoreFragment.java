@@ -88,22 +88,79 @@ public class EditMatchScoreFragment extends Fragment {
         void onFragmentInteraction(Uri uri);
     }
 
-    public void initializeScore(String p1, String p2,
+    public void initializeScore(String p1, String p2, int roundNumber,
                                 int p1r1, int p1r2, int p1r3, int p1r4, int p1r5,
                                 int p2r1, int p2r2, int p2r3, int p2r4, int p2r5)
     {
         tv_score_p1.setText(p1);
         tv_score_p2.setText(p2);
-        tv_r1_p1.setText(String.valueOf(p1r1));
-        tv_r2_p1.setText(String.valueOf(p1r1 + p1r2));
-        tv_r3_p1.setText(String.valueOf(p1r1 + p1r2 + p1r3));
-        tv_r4_p1.setText(String.valueOf(p1r1 + p1r2 + p1r3 + p1r4));
-        tv_r5_p1.setText(String.valueOf(p1r1 + p1r2 + p1r3 + p1r4 + p1r5));
-        tv_r1_p2.setText(String.valueOf(p2r1));
-        tv_r2_p2.setText(String.valueOf(p2r1 + p2r2));
-        tv_r3_p2.setText(String.valueOf(p2r1 + p2r2 + p2r3));
-        tv_r4_p2.setText(String.valueOf(p2r1 + p2r2 + p2r3 + p2r4));
-        tv_r5_p2.setText(String.valueOf(p2r1 + p2r2 + p2r3 + p2r4 + p2r5));
+
+        if(roundNumber == 1)
+        {
+            tv_r1_p1.setText(String.valueOf(p1r1));
+            tv_r2_p1.setText(String.valueOf(p1r2));
+            tv_r3_p1.setText(String.valueOf(p1r3));
+            tv_r4_p1.setText(String.valueOf(p1r4));
+            tv_r5_p1.setText(String.valueOf(p1r5));
+            tv_r1_p2.setText(String.valueOf(p2r1));
+            tv_r2_p2.setText(String.valueOf(p2r2));
+            tv_r3_p2.setText(String.valueOf(p2r3));
+            tv_r4_p2.setText(String.valueOf(p2r4));
+            tv_r5_p2.setText(String.valueOf(p2r5));
+        }
+        else if(roundNumber == 2)
+        {
+            tv_r1_p1.setText(String.valueOf(p1r1));
+            tv_r2_p1.setText(String.valueOf(p1r1 + p1r2));
+            tv_r3_p1.setText(String.valueOf(p1r3));
+            tv_r4_p1.setText(String.valueOf(p1r4));
+            tv_r5_p1.setText(String.valueOf(p1r5));
+            tv_r1_p2.setText(String.valueOf(p2r1));
+            tv_r2_p2.setText(String.valueOf(p2r1 + p2r2));
+            tv_r3_p2.setText(String.valueOf(p2r3));
+            tv_r4_p2.setText(String.valueOf(p2r4));
+            tv_r5_p2.setText(String.valueOf(p2r5));
+        }
+        else if(roundNumber == 3)
+        {
+            tv_r1_p1.setText(String.valueOf(p1r1));
+            tv_r2_p1.setText(String.valueOf(p1r1 + p1r2));
+            tv_r3_p1.setText(String.valueOf(p1r1 + p1r2 + p1r3));
+            tv_r4_p1.setText(String.valueOf(p1r4));
+            tv_r5_p1.setText(String.valueOf(p1r5));
+            tv_r1_p2.setText(String.valueOf(p2r1));
+            tv_r2_p2.setText(String.valueOf(p2r1 + p2r2));
+            tv_r3_p2.setText(String.valueOf(p2r1 + p2r2 + p2r3));
+            tv_r4_p2.setText(String.valueOf(p2r4));
+            tv_r5_p2.setText(String.valueOf(p2r5));
+        }
+        else if(roundNumber == 4)
+        {
+            tv_r1_p1.setText(String.valueOf(p1r1));
+            tv_r2_p1.setText(String.valueOf(p1r1 + p1r2));
+            tv_r3_p1.setText(String.valueOf(p1r1 + p1r2 + p1r3));
+            tv_r4_p1.setText(String.valueOf(p1r1 + p1r2 + p1r3 + p1r4));
+            tv_r5_p1.setText(String.valueOf(p1r5));
+            tv_r1_p2.setText(String.valueOf(p2r1));
+            tv_r2_p2.setText(String.valueOf(p2r1 + p2r2));
+            tv_r3_p2.setText(String.valueOf(p2r1 + p2r2 + p2r3));
+            tv_r4_p2.setText(String.valueOf(p2r1 + p2r2 + p2r3 + p2r4));
+            tv_r5_p2.setText(String.valueOf(p2r5));
+        }
+        else if(roundNumber == 5)
+        {
+            tv_r1_p1.setText(String.valueOf(p1r1));
+            tv_r2_p1.setText(String.valueOf(p1r1 + p1r2));
+            tv_r3_p1.setText(String.valueOf(p1r1 + p1r2 + p1r3));
+            tv_r4_p1.setText(String.valueOf(p1r1 + p1r2 + p1r3 + p1r4));
+            tv_r5_p1.setText(String.valueOf(p1r1 + p1r2 + p1r3 + p1r4 + p1r5));
+            tv_r1_p2.setText(String.valueOf(p2r1));
+            tv_r2_p2.setText(String.valueOf(p2r1 + p2r2));
+            tv_r3_p2.setText(String.valueOf(p2r1 + p2r2 + p2r3));
+            tv_r4_p2.setText(String.valueOf(p2r1 + p2r2 + p2r3 + p2r4));
+            tv_r5_p2.setText(String.valueOf(p2r1 + p2r2 + p2r3 + p2r4 + p2r5));
+        }
+
     }
 
     public void updateScore(int round_number, String player, int value)
