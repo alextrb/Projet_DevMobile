@@ -74,10 +74,6 @@ public class AllMatchesActivity extends AppCompatActivity
 
         getAllMatches("http://ultra-instinct-ece.000webhostapp.com/getMatchesList.php");
 
-        //CustomListAdapter whatever = new CustomListAdapter(this, infoArray);
-
-        //listView.setAdapter(whatever);
-
 
     }
 
