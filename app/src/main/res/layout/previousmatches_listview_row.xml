@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/player1Infos"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="5"
+            android:orientation="vertical"
+            android:paddingLeft="15dp">
+
+            <TextView
+                android:id="@+id/ListView_Match_Player1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Player1"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/ListView_NombreVictoires1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Nombre de victoires" />
+
+            <TextView
+                android:id="@+id/ListView_NombreDefaites1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Nombre de défaites" />
+
+            <TextView
+                android:id="@+id/ListView_NombreKos1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Nombre de kos"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:text="VS"/>
+
+            <ImageView
+                android:id="@+id/ListView_Matches_Status"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:srcCompat="@drawable/ic_fight"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:text="Coordonnées du match"
+                />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/gameNameTextViewID"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="5"
+            android:orientation="vertical"
+            android:paddingLeft="15dp">
+
+            <TextView
+                android:id="@+id/ListView_Match_Player2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Player2"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/ListView_NombreVictoires2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Nombre de victoires" />
+
+            <TextView
+                android:id="@+id/ListView_NombreDefaites2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Nombre de défaites" />
+
+            <TextView
+                android:id="@+id/ListView_NombreKos2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Nombre de kos"/>
+
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

@@ -8,4 +8,12 @@
     tools:context="app.univers7.ultra_instinct.PreviousMatchesActivity"
     tools:showIn="@layout/app_bar_previous_matches">
 
+
+    <ListView
+        android:id="@+id/previousMatchesListViewId"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </ListView>
+
 </android.support.constraint.ConstraintLayout>
