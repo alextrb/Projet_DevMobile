@@ -84,22 +84,6 @@
             android:onClick="matchButtonsManager"
             android:text="Photos" />
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/galleryMatchesDetails"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
-
-        <ImageView
-            android:id="@+id/imageview"
-            android:layout_width="120dp"
-            android:layout_height="120dp"/>
-
-        <Button
-            android:id="@+id/button_image"
-            android:layout_width="wrap_content"
-            android:layout_height="48dp"
-            android:onClick="takePicture"
-            android:text="Take a picture!"/>
     </LinearLayout>
 
 </ScrollView>

@@ -49,7 +49,7 @@ public class AdapterRecyclerView extends RecyclerView.Adapter<AdapterRecyclerVie
     }
 
     public int getItemCount(){
-        return galleryList.size();
+            return galleryList.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
