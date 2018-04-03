@@ -42,7 +42,6 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         et_name = (EditText) findViewById(R.id.register_name);
         et_origin = (EditText) findViewById(R.id.register_origin);

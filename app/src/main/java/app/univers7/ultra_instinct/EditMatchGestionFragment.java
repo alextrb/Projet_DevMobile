@@ -245,4 +245,27 @@ public class EditMatchGestionFragment extends Fragment {
         tv_gestion_p1.setText(player1);
         tv_gestion_p2.setText(player2);
     }
+
+    public void setStatus(int match_status)
+    {
+        if(match_status == 1)
+        {
+            btn_gestion_nextround.setText("MATCH TERMINÉ");
+            edit_j1_bk.setEnabled(false);
+            edit_j1_sbk.setEnabled(false);
+            edit_j1_hk.setEnabled(false);
+            edit_j1_shk.setEnabled(false);
+            edit_j1_punch.setEnabled(false);
+            edit_j1_KO.setEnabled(false);
+            edit_j1_faute.setEnabled(false);
+            edit_j2_bk.setEnabled(false);
+            edit_j2_sbk.setEnabled(false);
+            edit_j2_hk.setEnabled(false);
+            edit_j2_shk.setEnabled(false);
+            edit_j2_punch.setEnabled(false);
+            edit_j2_KO.setEnabled(false);
+            edit_j2_faute.setEnabled(false);
+            btn_gestion_nextround.setEnabled(false);
+        }
+    }
 }

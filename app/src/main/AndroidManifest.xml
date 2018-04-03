@@ -17,7 +17,6 @@
         <activity
             android:name=".AllMatchesActivity"
             android:label="@string/title_activity_all_matches"
-            android:launchMode="singleInstance"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -29,13 +28,11 @@
         <activity
             android:name=".PlayersActivity"
             android:label="@string/title_activity_players"
-            android:launchMode="singleInstance"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".PreviousMatchesActivity"
             android:label="@string/title_activity_previous_matches"
-            android:launchMode="singleInstance"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
@@ -49,26 +46,21 @@
         <activity
             android:name=".PreviousMatchesDetailsActivity"
             android:label="@string/title_activity_previous_matches_details"
-            android:launchMode="singleInstance"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".AddMatchActivity"
             android:label="Création d&apos;un match"
-            android:parentActivityName=".AllMatchesActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".RegisterActivity"
             android:label="Insertion d&apos;un joueur"
-            android:parentActivityName=".PlayersActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".EditMatchActivity"
-            android:label="Gérer le combat"
-            android:parentActivityName=".AllMatchesDetailsActivity" />
+            android:label="Gérer le combat" />
         <activity
             android:name=".StatsActivity"
-            android:label="Statistiques du combat"
-            android:parentActivityName=".AllMatchesDetailsActivity"/>
+            android:label="Statistiques du combat"/>
     </application>
 
 </manifest>
