@@ -1,10 +1,17 @@
 package app.univers7.ultra_instinct;
 
+import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.ActivityCompat;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -16,7 +23,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.ScrollView;
 import android.widget.Toast;
 
 import org.json.JSONArray;
@@ -30,8 +39,17 @@ import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
+
 public class AllMatchesActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, OnMapReadyCallback, LocationListener{
 
     int[] matchesID;
     String[] matchesPlayer1;
@@ -43,7 +61,18 @@ public class AllMatchesActivity extends AppCompatActivity
     int[] matchesStatus;
 
     ListView listView;
+    ScrollView v;
 
+    SupportMapFragment mapFragment;
+    GoogleMap mMap;
+
+    private Marker currentMarker;
+
+    private LocationManager locationManager;
+    private String provider;
+
+    String[] permissions = {Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION};
+    private int USER_LOCATION_REQUESTCODE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,8 +101,38 @@ public class AllMatchesActivity extends AppCompatActivity
 
         listView = (ListView) findViewById(R.id.allMatchesListViewId);
 
-        getAllMatches("http://ultra-instinct-ece.000webhostapp.com/getMatchesList.php");
+        v = (ScrollView) findViewById(R.id.scrollView);
 
+
+
+
+
+        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
+        mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
+
+        // Get the location manager
+        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+
+        if(locationManager.isProviderEnabled(locationManager.NETWORK_PROVIDER)){
+            provider = locationManager.NETWORK_PROVIDER;
+        }
+        else if(locationManager.isProviderEnabled(locationManager.GPS_PROVIDER)){
+            provider = locationManager.GPS_PROVIDER;
+        }
+        else{
+            Toast toast = Toast.makeText(this,"Please activate either Cellular or Wifi", Toast.LENGTH_LONG);
+            toast.show();
+        }
+
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED)
+        {
+
+            mapFragment.getMapAsync(this);
+        }
+        else // Si on ne les as pas, on les demande et ça appelle ensuite "onRequestPermissionsResult"
+        {
+            ActivityCompat.requestPermissions(this, permissions, USER_LOCATION_REQUESTCODE);
+        }
 
     }
 
@@ -128,6 +187,14 @@ public class AllMatchesActivity extends AppCompatActivity
                 super.onPostExecute(s);
                 try {
                     loadIntoListView(s);
+                    for(int i=0; i<matchesLatitude.length; i++)
+                    {
+                        LatLng match_LatLng = new LatLng(matchesLatitude[i],matchesLongitude[i]);
+                        mMap.addMarker(new MarkerOptions().position(match_LatLng).title(matchesDescription[i]).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
+                        mMap.moveCamera(CameraUpdateFactory.newLatLng(match_LatLng));
+                    }
+
+                    v.scrollTo(0,0);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -202,5 +269,103 @@ public class AllMatchesActivity extends AppCompatActivity
             }
         });
 
+    }
+
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+
+        mMap = googleMap;
+        findCurrentLocation();
+
+
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+        if(requestCode == USER_LOCATION_REQUESTCODE)
+        {
+            // Si on a bien reçu les permissions de l'utilisateur
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED && grantResults[1] == PackageManager.PERMISSION_GRANTED)
+            {
+                if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+
+                    mapFragment.getMapAsync(this);
+
+                }
+            }
+        }
+    }
+
+    public void findCurrentLocation() {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED)
+        {
+            Location location = locationManager.getLastKnownLocation(provider);
+
+            if(location != null) {
+                Double lat = location.getLatitude();
+                Double lng = location.getLongitude();
+
+                if(currentMarker != null)
+                {
+                    currentMarker.remove();
+                }
+
+                LatLng position = new LatLng(lat, lng);
+
+
+                currentMarker = mMap.addMarker(new MarkerOptions().position(position).title("Ma position").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
+            }
+        }
+        else // Si on ne les as pas, on les demande et ça appelle ensuite "onRequestPermissionsResult"
+        {
+            Toast toast = Toast.makeText(this, "Veuillez autoriser la localisation", Toast.LENGTH_LONG);
+            toast.show();
+        }
+    }
+
+
+    @Override
+    public void onLocationChanged(Location location) {
+        findCurrentLocation();
+    }
+
+    @Override
+    public void onStatusChanged(String s, int i, Bundle bundle) {
+
+    }
+
+    @Override
+    public void onProviderEnabled(String s) {
+
+    }
+
+    @Override
+    public void onProviderDisabled(String s) {
+
+    }
+
+    @Override
+    protected void onResume()
+    {
+        super.onResume();
+        getAllMatches("http://ultra-instinct-ece.000webhostapp.com/getMatchesList.php");
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED)
+        {
+        }
+        else // Si on ne les as pas, on les demande et ça appelle ensuite "onRequestPermissionsResult"
+        {
+            ActivityCompat.requestPermissions(this, permissions, USER_LOCATION_REQUESTCODE);
+        }
+        locationManager.requestLocationUpdates(provider, 400, 1, this);
+    }
+    @Override
+    protected void onPause()
+    {
+        super.onPause();
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED)
+        {
+
+        }
+        locationManager.removeUpdates(this);
     }
 }
