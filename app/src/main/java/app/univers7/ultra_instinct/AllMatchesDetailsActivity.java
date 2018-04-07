@@ -40,8 +40,6 @@ public class AllMatchesDetailsActivity extends AppCompatActivity
     String description;
     int status;
 
-    String image_ids[];
-
     SupportMapFragment mapFragment;
 
     @Override
@@ -99,7 +97,7 @@ public class AllMatchesDetailsActivity extends AppCompatActivity
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
-        getGeocoding(latitude, longitude);
+        //getGeocoding(latitude, longitude);
 
     }
 

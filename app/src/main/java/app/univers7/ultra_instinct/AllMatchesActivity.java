@@ -103,10 +103,6 @@ public class AllMatchesActivity extends AppCompatActivity
 
         v = (ScrollView) findViewById(R.id.scrollView);
 
-
-
-
-
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
 
@@ -314,6 +310,8 @@ public class AllMatchesActivity extends AppCompatActivity
 
 
                 currentMarker = mMap.addMarker(new MarkerOptions().position(position).title("Ma position").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
+                mMap.moveCamera(CameraUpdateFactory.newLatLng(position));
+
             }
         }
         else // Si on ne les as pas, on les demande et ça appelle ensuite "onRequestPermissionsResult"
